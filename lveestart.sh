@@ -1,8 +1,13 @@
 #!/bin/bash
-# sudo apt-get install git curl
-# sudo apt-get install libmysqlclient-dev libpq-dev libev-dev
-# gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-# curl -sSL https://get.rvm.io | bash -s stable
+Ubuntu=$(uname -v | grep -o Ubuntu)
+Fedora=$(uname -v | grep -o Fedora)
+if [[ $Ubuntu = "Ubuntu" ]]
+then sudo apt-get install git curl libmysqlclient-dev libpq-dev libev-dev; fi
+if [[ $Fedora = "Fedora" ]]
+then sudo dnf install  libxml2-devel libmysqlclient-devel git curl; fi
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 pwd
 cd ..
@@ -15,6 +20,9 @@ bundle install
 touch config/databasemy.yml
 cat config/database.yml | sed  's/P@ssw0rd/12345/g' > config/databasemy.yml
 mv config/databasemy.yml config/database.yml
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
+if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
 bundle exec rake bootstrap
 bundle exec rails s
-bundle exec rake db:drop:all
+#bundle exec rake db:drop:all
