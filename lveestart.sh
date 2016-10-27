@@ -1,9 +1,9 @@
 #!/bin/bash
 Ubuntu=$(uname -v | grep -o Ubuntu)
-Fedora=$(uname -v | grep -o Fedora)
+Fedora=$(uname -a | grep -oi Fedora)
 if [[ $Ubuntu = "Ubuntu" ]]
 then sudo apt-get install git curl libmysqlclient-dev libpq-dev libev-dev; fi
-if [[ $Fedora = "Fedora" ]]
+if [[ $Fedora = "fedora" ]]
 then sudo dnf install  libxml2-devel libmysqlclient-devel git curl; fi
 
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
