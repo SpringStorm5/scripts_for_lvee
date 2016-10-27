@@ -13,6 +13,7 @@ pwd
 cd ..
 git clone https://github.com/lvee/lvee-engine
 cd lvee-engine/
+#git checkout staging
 rvm install $(cat .ruby-version)
 rvm use $(cat .ruby-version)
 gem install bundler
