@@ -10,7 +10,6 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 pwd
-cd ..
 git clone https://github.com/lvee/lvee-engine
 cd lvee-engine/
 #git checkout staging
