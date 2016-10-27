@@ -1,5 +1,5 @@
 #!/bin/bash
-Ubuntu=$(uname -v | grep -o Ubuntu)
+Ubuntu=$(uname -a | grep -oi Ubuntu)
 Fedora=$(uname -a | grep -oi Fedora)
 if [[ $Ubuntu = "Ubuntu" ]]
 then sudo apt-get install git curl libmysqlclient-dev libpq-dev libev-dev; fi
