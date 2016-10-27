@@ -23,6 +23,5 @@ mv config/databasemy.yml config/database.yml
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
-bundle exec rake bootstrap
 bundle exec rails s
 #bundle exec rake db:drop:all
