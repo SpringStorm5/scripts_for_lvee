@@ -13,7 +13,7 @@ source ~/.rvm/scripts/rvm
 git clone https://github.com/lvee/lvee-engine
 cd lvee-engine/
 #git checkout staging
-rvm install $(cat .ruby-version)
+rvm install $(cat .ruby-version) #может быть долго
 rvm use $(cat .ruby-version)
 gem install bundler
 bundle install
