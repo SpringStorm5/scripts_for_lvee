@@ -20,6 +20,7 @@ bundle install
 touch config/databasemy.yml
 cat config/database.yml | sed  's/P@ssw0rd/12345/g' > config/databasemy.yml
 mv config/databasemy.yml config/database.yml
+service mysql start
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
