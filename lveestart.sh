@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 while (( $# > 0 ))
 do
     opt="$1"
@@ -31,12 +31,6 @@ do
 
 done
 
-#  if [[ -n "$1" ]]
-#    then parol=$1
-#  else
-#    parol="default"
-#  fi
-
 Ubuntu=$(uname -a | grep -oi Ubuntu)
 Fedora=$(uname -a | grep -oi Fedora)
 if [[ $Ubuntu = "Ubuntu" ]]
@@ -66,7 +60,7 @@ sed  "s/lvee.org/localhost:3000/g" <config/initializers/constants.rb >config/ini
 sed  "s/https/http/g" <config/initializers/constants.rb  >config/initializers/constantsnew.rb
 mv config/initializers/constantsnew.rb config/initializers/constants.rb
 bundle exec rails s
-#bundle exec rake db:drop:all
+bundle exec rake db:drop:all
 
 
 
