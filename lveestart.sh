@@ -48,6 +48,9 @@ rvm install $(cat .ruby-version) #может быть долго
 rvm use $(cat .ruby-version)
 gem install bundler
 bundle install
+email="mail"
+email_pass="pass"
+sed -i "/config.i18n.backend = I18nDatabaseBackend.new/i \  config.action_mailer.raise_delivery_errors = false\n  config.action_mailer.delivery_method = :smtp\n  config.action_mailer.smtp_settings = {\n    :address => 'smtp.gmail.com',\n    :port => '587',\n    :user_name => '$email',\n    :password => '$email_pass',\n    :authentication => 'plain',\n    :enable_starttls_auto => true }\n" ./config/environments/development.rb
 touch config/databasemy.yml
 cat config/database.yml | sed  "s/P@ssw0rd/$parol/g" > config/databasemy.yml
 mv config/databasemy.yml config/database.yml
