@@ -61,5 +61,12 @@ service mysql start
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
+touch config/initializers/constantsnew.rb
+sed  "s/lvee.org/localhost:3000/g" <config/initializers/constants.rb >config/initializers/constantsnew.rb
+sed  "s/https/http/g" <config/initializers/constants.rb  >config/initializers/constantsnew.rb
+mv config/initializers/constantsnew.rb config/initializers/constants.rb
 bundle exec rails s
 #bundle exec rake db:drop:all
+
+
+
