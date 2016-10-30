@@ -1,9 +1,42 @@
 #!/bin/bash
-  if [[ -n "$1" ]]
-    then parol=$1
-  else
-    parol="default"
-  fi
+while (( $# > 0 ))
+do
+    opt="$1"
+    shift
+
+    case $opt in
+    --pass)
+      parol="$1"
+      shift
+      ;;
+
+    --help)
+        helpfunc
+        exit 0
+        ;;
+    --version)
+        echo "$0 version $version"
+        exit 0
+        ;;
+
+    --*)
+        echo "Invalid option: '$opt'" >&2
+        exit 1
+        ;;
+    *)
+        # end of long options
+        break;
+        ;;
+   esac
+
+done
+
+#  if [[ -n "$1" ]]
+#    then parol=$1
+#  else
+#    parol="default"
+#  fi
+
 Ubuntu=$(uname -a | grep -oi Ubuntu)
 Fedora=$(uname -a | grep -oi Fedora)
 if [[ $Ubuntu = "Ubuntu" ]]
