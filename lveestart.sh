@@ -64,7 +64,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
 sed  -i "s/lvee.org/localhost:3000/g" config/initializers/constants.rb
-sed  -i "s/https/http/g"  >config/initializers/constants.rb
+sed  -i "s/https/http/g"  config/initializers/constants.rb
 bundle exec rails s
 bundle exec rake db:drop:all
 
