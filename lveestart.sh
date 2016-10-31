@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 while (( $# > 0 ))
 do
     opt="$1"
@@ -11,11 +11,11 @@ do
       shift
       ;;
     --email)
-      email="$2"
+      email="$1"
       shift
       ;;
     --email_pass)
-      email_pass="$3"
+      email_pass="$1"
       shift
       ;;
 
@@ -51,22 +51,19 @@ curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 #pwd
 git clone https://github.com/lvee/lvee-engine
-cd lvee-engine/
+cd lvee-engin
 git checkout staging
 rvm install $(cat .ruby-version) #может быть долго
 rvm use $(cat .ruby-version)
 gem install bundler
 bundle install
 sed -i "/config.i18n.backend = I18nDatabaseBackend.new/i \  config.action_mailer.raise_delivery_errors = false\n  config.action_mailer.delivery_method = :smtp\n  config.action_mailer.smtp_settings = {\n    :address => 'smtp.gmail.com',\n    :port => '587',\n    :user_name => '$email',\n    :password => '$email_pass',\n    :authentication => 'plain',\n    :enable_starttls_auto => true }\n" ./config/environments/development.rb
-sed  -i "s/P@ssw0rd/$parol/g" config/database.yml
-service mysql start
+sed -i "s/P@ssw0rd/$parol/g" config/database.yml
+sudo service mysql start
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
-sed  -i "s/lvee.org/localhost:3000/g" config/initializers/constants.rb
-sed  -i "s/https/http/g"  config/initializers/constants.rb
+sed -i "s/lvee.org/localhost:3000/g" config/initializers/constants.rb
+sed -i "s/https/http/g" config/initializers/constants.rb
 bundle exec rails s
 bundle exec rake db:drop:all
-
-
-
