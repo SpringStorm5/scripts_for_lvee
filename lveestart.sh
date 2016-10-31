@@ -51,7 +51,7 @@ curl -sSL https://get.rvm.io | bash -s stable
 source ~/.rvm/scripts/rvm
 #pwd
 git clone https://github.com/lvee/lvee-engine
-cd lvee-engin
+cd lvee-engine
 git checkout staging
 rvm install $(cat .ruby-version) #может быть долго
 rvm use $(cat .ruby-version)
