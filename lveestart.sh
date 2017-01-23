@@ -65,7 +65,7 @@ sed -i "/config.i18n.backend = I18nDatabaseBackend.new/i \  config.action_mailer
 sed -i "s/P@ssw0rd/$parol/g" $fold/config/database.yml
 sudo service mysql start # sudo service mariadb start
 cd $fold
-RAILS_ENV=development
+"bin/rails db:environment:set RAILS_ENV=development"
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ $branch = "staging" ]]; then bundle exec rails bootstrap; fi
 if [[ $branch = "master" ]]; then bundle exec rake bootstrap; fi
