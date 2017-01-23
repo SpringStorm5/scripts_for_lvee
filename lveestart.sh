@@ -45,15 +45,15 @@ do
 
 done
 
-#Ubuntu=$(uname -a | grep -oi Ubuntu)
-#Fedora=$(uname -a | grep -oi Fedora)
-#if [[ $Ubuntu = "Ubuntu" ]]
-#then sudo apt-get install git curl nodejs libmysqlclient-dev libpq-dev libev-dev; fi
-#if [[ $Fedora = "fedora" ]]
-#then sudo dnf install  git curl nodejs mariadb mariadb-server; fi
-#gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-#curl -sSL https://get.rvm.io | bash -s stable
-#source ~/.rvm/scripts/rvm
+Ubuntu=$(uname -a | grep -oi Ubuntu)
+Fedora=$(uname -a | grep -oi Fedora)
+if [[ $Ubuntu = "Ubuntu" ]]
+then sudo apt-get install git curl nodejs libmysqlclient-dev libpq-dev libev-dev; fi
+if [[ $Fedora = "fedora" ]]
+then sudo dnf install  git curl nodejs mariadb mariadb-server; fi
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
 git clone https://github.com/lvee/lvee-engine $fold
 cd $fold #lvee-engine
 git checkout staging
