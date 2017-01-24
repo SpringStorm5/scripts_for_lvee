@@ -63,9 +63,11 @@ gem install bundler
 bundle install
 sed -i "/config.i18n.backend = I18nDatabaseBackend.new/i \  config.action_mailer.raise_delivery_errors = false\n  config.action_mailer.delivery_method = :smtp\n  config.action_mailer.smtp_settings = {\n    :address => 'smtp.gmail.com',\n    :port => '587',\n    :user_name => '$email',\n    :password => '$email_pass',\n    :authentication => 'plain',\n    :enable_starttls_auto => true }\n" $fold/config/environments/development.rb
 sed -i "s/P@ssw0rd/$parol/g" $fold/config/database.yml
-sudo service mysql start
 if [[ $Fedora = "fedora" ]]
-then sudo service mariadb start; fi
+    then sudo service mariadb start
+else
+    sudo service mysql start
+fi
 cd $fold
 "bin/rails db:environment:set RAILS_ENV=development"
 branch=$(git rev-parse --abbrev-ref HEAD)
